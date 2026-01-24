@@ -28,7 +28,7 @@ export const Hero = () => {
         >
           Dominate Roblox with <br />
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400">
-            Lumina Script
+            RS Script
           </span>
         </motion.h1>
 
@@ -38,8 +38,8 @@ export const Hero = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10"
         >
-          Experience the most advanced, undetectable, and powerful script hub. 
-          Auto-farm, ESP, Aimbot, and more for your favorite games.
+        体验最先进、不可检测和强大的脚本中心。 
+        自动农场, ESP, Aimbot
         </motion.p>
 
         <motion.div
@@ -52,7 +52,7 @@ export const Hero = () => {
             href="#script"
             className="group px-8 py-4 bg-white text-slate-900 rounded-xl font-semibold hover:bg-slate-200 transition-all flex items-center gap-2"
           >
-            Get Script Now
+            获取脚本
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
           <a
@@ -61,7 +61,7 @@ export const Hero = () => {
             rel="noreferrer"
             className="px-8 py-4 bg-white/5 text-white border border-white/10 rounded-xl font-semibold hover:bg-white/10 transition-all"
           >
-            Join Discord
+            加入Discord
           </a>
         </motion.div>
       </div>
