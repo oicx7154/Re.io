@@ -401,11 +401,12 @@ export const Injectors = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.3 }}
-          className="bg-slate-900/95 border border-white/10 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+          className="bg-slate-900/95 border border-white/10 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
         >
+          {/* Modal Header */}
           <div className="p-6 border-b border-white/10 flex justify-between items-center">
-            <h3 className="text-xl font-bold text-white">
-              {selectedInjector.name} - SUNC 测试结果
+            <h3 className="text-2xl font-bold text-white">
+              {selectedInjector.name} - 详细信息
             </h3>
             <button 
               onClick={closeSuncModal}
@@ -415,104 +416,183 @@ export const Injectors = () => {
             </button>
           </div>
           
-          <div className="p-6">
-            {suncLoading ? (
-              <div className="flex flex-col items-center justify-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-violet-500 mb-4"></div>
-                <p className="text-slate-400">加载 SUNC 测试结果中...</p>
-              </div>
-            ) : !suncData ? (
-              <div className="text-center py-12">
-                <p className="text-slate-400">此注入器没有 SUNC 测试数据</p>
-                <div className="mt-6 text-center">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-500/20 text-violet-400 rounded-lg border border-violet-500/30">
-                    <span className="font-bold">{selectedInjector.suncPercent}%</span>
-                    <span>SUNC</span>
-                  </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 text-green-400 rounded-lg border border-green-500/30 ml-2">
-                    <span className="font-bold">{selectedInjector.uncPercent}%</span>
-                    <span>UNC</span>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                  <div className="bg-slate-800/50 rounded-lg p-4 border border-white/5">
-                    <div className="text-2xl font-bold text-violet-400">{Math.round((Object.values(suncData.functions).filter(f => f).length / Object.keys(suncData.functions).length) * 100)}%</div>
-                    <div className="text-sm text-slate-400 mt-1">通过百分比</div>
-                  </div>
-                  <div className="bg-slate-800/50 rounded-lg p-4 border border-white/5">
-                    <div className="text-2xl font-bold text-green-400">{Object.values(suncData.functions).filter(f => f).length}</div>
-                    <div className="text-sm text-slate-400 mt-1">通过函数</div>
-                  </div>
-                  <div className="bg-slate-800/50 rounded-lg p-4 border border-white/5">
-                    <div className="text-2xl font-bold text-red-400">{Object.values(suncData.functions).filter(f => !f).length}</div>
-                    <div className="text-sm text-slate-400 mt-1">失败函数</div>
-                  </div>
-                  <div className="bg-slate-800/50 rounded-lg p-4 border border-white/5">
-                    <div className="text-2xl font-bold text-white">{Object.keys(suncData.functions).length}</div>
-                    <div className="text-sm text-slate-400 mt-1">总函数数</div>
-                  </div>
-                </div>
-                
-                {suncData.timeTaken && (
-                  <div className="mb-6 p-3 bg-blue-500/10 rounded-lg border border-blue-500/30 text-sm text-blue-300">
-                    测试耗时: {suncData.timeTaken}ms
-                  </div>
-                )}
-                
-                {suncData.version && (
-                  <div className="mb-6 p-3 bg-purple-500/10 rounded-lg border border-purple-500/30 text-sm text-purple-300">
-                    SUNC 版本: {suncData.version}
-                  </div>
-                )}
-                
-                <div className="space-y-4">
-                  {Object.entries(groupSuncFunctions(suncData.functions)).map(([groupName, functions]) => (
-                    <div key={groupName} className="bg-slate-800/50 rounded-lg border border-white/5 overflow-hidden">
-                      <div className="px-4 py-3 bg-white/5 border-b border-white/5">
-                        <h4 className="font-medium text-white">
-                          {groupName} ({Object.keys(functions).length})
-                        </h4>
-                      </div>
-                      <div className="divide-y divide-white/5">
-                        {Object.entries(functions).map(([funcName, passed]) => (
-                          <div key={funcName} className="px-4 py-2 flex items-center gap-3">
-                            <div className={`w-3 h-3 rounded-full ${passed ? 'bg-green-500' : 'bg-red-500'}`} />
-                            <span className="text-sm text-slate-300">{funcName}</span>
-                          </div>
-                        ))}
-                      </div>
+          <div className="p-6 space-y-6">
+            {/* Injector Overview */}
+            <div className="bg-slate-800/50 rounded-lg p-5 border border-white/5">
+              <h4 className="text-lg font-medium text-white mb-4">注入器概览</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1">
+                  <span className="text-sm text-slate-400">SUNC 评分</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl font-bold text-violet-400">{selectedInjector.suncPercent}%</span>
+                    <div className="flex-1 h-2 bg-slate-700/50 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-violet-500 transition-all duration-500" 
+                        style={{ width: `${selectedInjector.suncPercent}%` }}
+                      ></div>
                     </div>
-                  ))}
+                  </div>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="text-sm text-slate-400">UNC 评分</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl font-bold text-green-400">{selectedInjector.uncPercent}%</span>
+                    <div className="flex-1 h-2 bg-slate-700/50 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-green-500 transition-all duration-500" 
+                        style={{ width: `${selectedInjector.uncPercent}%` }}
+                      ></div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            )}
+            </div>
             
-            <div className="mt-6 p-4 bg-amber-500/10 rounded-lg border border-amber-500/30 text-sm text-amber-300">
-              <p className="flex items-start gap-2">
-                <span className="font-bold">⚠️</span>
-                <span>SUNC 测试结果仅供参考，实际性能可能因环境不同而有所差异。</span>
-              </p>
+            {/* SUNC Test Results */}
+            <div>
+              <h4 className="text-lg font-medium text-white mb-4">SUNC 测试结果</h4>
+              
+              {suncLoading ? (
+                <div className="flex flex-col items-center justify-center py-12 bg-slate-800/50 rounded-lg border border-white/5">
+                  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-violet-500 mb-4"></div>
+                  <p className="text-slate-400">加载 SUNC 测试结果中...</p>
+                </div>
+              ) : !suncData ? (
+                <div className="text-center py-12 bg-slate-800/50 rounded-lg border border-white/5">
+                  <div className="inline-flex items-center gap-3 px-6 py-3 bg-violet-500/20 text-violet-400 rounded-lg border border-violet-500/30 mb-4">
+                    <span className="text-2xl font-bold">{selectedInjector.suncPercent}%</span>
+                    <span className="text-lg">SUNC</span>
+                  </div>
+                  <div className="inline-flex items-center gap-3 px-6 py-3 bg-green-500/20 text-green-400 rounded-lg border border-green-500/30">
+                    <span className="text-2xl font-bold">{selectedInjector.uncPercent}%</span>
+                    <span className="text-lg">UNC</span>
+                  </div>
+                  <p className="text-slate-400 mt-6">此注入器没有详细的 SUNC 测试数据</p>
+                </div>
+              ) : (
+                <div className="space-y-5">
+                  {/* Test Summary */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="bg-slate-800/50 rounded-lg p-4 border border-white/5">
+                      <div className="text-2xl font-bold text-violet-400">{Math.round((Object.values(suncData.functions).filter(f => f).length / Object.keys(suncData.functions).length) * 100)}%</div>
+                      <div className="text-sm text-slate-400 mt-1">通过百分比</div>
+                    </div>
+                    <div className="bg-slate-800/50 rounded-lg p-4 border border-white/5">
+                      <div className="text-2xl font-bold text-green-400">{Object.values(suncData.functions).filter(f => f).length}</div>
+                      <div className="text-sm text-slate-400 mt-1">通过函数</div>
+                    </div>
+                    <div className="bg-slate-800/50 rounded-lg p-4 border border-white/5">
+                      <div className="text-2xl font-bold text-red-400">{Object.values(suncData.functions).filter(f => !f).length}</div>
+                      <div className="text-sm text-slate-400 mt-1">失败函数</div>
+                    </div>
+                    <div className="bg-slate-800/50 rounded-lg p-4 border border-white/5">
+                      <div className="text-2xl font-bold text-white">{Object.keys(suncData.functions).length}</div>
+                      <div className="text-sm text-slate-400 mt-1">总函数数</div>
+                    </div>
+                  </div>
+                  
+                  {/* Test Metadata */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {suncData.timeTaken && (
+                      <div className="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-slate-400">测试耗时</span>
+                          <span className="text-sm font-medium text-blue-300">{suncData.timeTaken}ms</span>
+                        </div>
+                      </div>
+                    )}
+                    {suncData.version && (
+                      <div className="p-3 bg-purple-500/10 rounded-lg border border-purple-500/30">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-slate-400">SUNC 版本</span>
+                          <span className="text-sm font-medium text-purple-300">{suncData.version}</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Function Results */}
+                  <div className="bg-slate-800/50 rounded-lg border border-white/5 overflow-hidden">
+                    <div className="px-5 py-3 bg-white/5 border-b border-white/5">
+                      <h5 className="font-medium text-white">函数测试结果</h5>
+                    </div>
+                    <div className="divide-y divide-white/5 max-h-96 overflow-y-auto">
+                      {Object.entries(groupSuncFunctions(suncData.functions)).map(([groupName, functions]) => (
+                        <div key={groupName} className="p-4">
+                          <h6 className="text-sm font-medium text-white mb-3">
+                            {groupName} ({Object.keys(functions).length})
+                          </h6>
+                          <div className="space-y-2">
+                            {Object.entries(functions).map(([funcName, passed]) => (
+                              <div key={funcName} className="flex items-center gap-3 p-2 bg-slate-700/30 rounded-lg hover:bg-slate-700/50 transition-colors">
+                                <div className={`w-3 h-3 rounded-full ${passed ? 'bg-green-500' : 'bg-red-500'}`} />
+                                <span className="text-sm text-slate-300">{funcName}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            
+            {/* Additional Information */}
+            <div className="bg-slate-800/50 rounded-lg p-5 border border-white/5">
+              <h4 className="text-lg font-medium text-white mb-4">附加信息</h4>
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="p-3 bg-slate-700/30 rounded-lg">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-slate-400">SUNC 测试链接</span>
+                      {selectedInjector.suncScrap && selectedInjector.suncKey && (
+                        <a 
+                          href={`https://sunc.rubis.app/?scrap=${selectedInjector.suncScrap}&key=${selectedInjector.suncKey}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-sm text-violet-400 hover:text-violet-300 transition-colors"
+                        >
+                          查看 <ExternalLink className="w-3 h-3" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                  <div className="p-3 bg-slate-700/30 rounded-lg">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-slate-400">测试时间</span>
+                      <span className="text-sm text-slate-300">{new Date().toLocaleString('zh-CN')}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Disclaimer */}
+                <div className="p-4 bg-amber-500/10 rounded-lg border border-amber-500/30 text-sm text-amber-300">
+                  <p className="flex items-start gap-2">
+                    <span className="font-bold">⚠️</span>
+                    <span>SUNC 测试结果仅供参考，实际性能可能因环境不同而有所差异。建议在使用前进行充分测试。</span>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
           
-          <div className="p-6 border-t border-white/10 flex justify-between items-center">
+          {/* Modal Footer */}
+          <div className="p-6 border-t border-white/10 flex justify-end gap-4">
             {selectedInjector.suncScrap && selectedInjector.suncKey && (
               <a 
                 href={`https://sunc.rubis.app/?scrap=${selectedInjector.suncScrap}&key=${selectedInjector.suncKey}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg transition-colors text-sm font-medium text-white border border-white/5"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 rounded-lg transition-colors text-sm font-medium text-white border border-white/5"
               >
                 <ExternalLink className="w-4 h-4" />
-                在新窗口中查看
+                在新窗口中查看完整结果
               </a>
             )}
             <button 
               onClick={closeSuncModal}
-              className="px-4 py-2 bg-violet-500/20 hover:bg-violet-500/30 rounded-lg transition-colors text-violet-400 hover:text-violet-300 text-sm font-medium border border-violet-500/30"
+              className="px-5 py-2.5 bg-violet-500/20 hover:bg-violet-500/30 rounded-lg transition-colors text-violet-400 hover:text-violet-300 text-sm font-medium border border-violet-500/30"
             >
               关闭
             </button>
