@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Download, RefreshCw, Monitor, Apple, AlertCircle } from 'lucide-react';
 
 interface VersionInfo {
@@ -26,7 +25,7 @@ export const RobloxVersion = () => {
 
   const getRobloxVersion = async () => {
     const endpoints = [
-      'https://weao.xyz/api/versions/current',
+      'http://farts.fadedis.xyz:25551/api/versions/current',
       'https://whatexpsare.online/api/versions/current',
       'https://whatexploitsaretra.sh/api/versions/current',
       'https://weao.gg/api/versions/current'
@@ -58,7 +57,7 @@ export const RobloxVersion = () => {
 
   const getRobloxPastVersion = async () => {
     const endpoints = [
-      'https://weao.xyz/api/versions/past',
+      'http://farts.fadedis.xyz:25551/api/versions/past',
       'https://whatexpsare.online/api/versions/past',
       'https://whatexploitsaretra.sh/api/versions/past',
       'https://weao.gg/api/versions/past'
