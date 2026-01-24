@@ -56,7 +56,7 @@ export const Hero = () => {
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
           <a
-            href="https://discord.com"
+            href="https://discord.gg/pvpdkxhJ7Y"
             target="_blank"
             rel="noreferrer"
             className="px-8 py-4 bg-white/5 text-white border border-white/10 rounded-xl font-semibold hover:bg-white/10 transition-all"
