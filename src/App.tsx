@@ -13,8 +13,8 @@ function App() {
       <Background />
       <CookieConsent />
       <Navbar />
-      <ScriptSection />
       <Hero />
+      <ScriptSection />
       <Features />
       <ContentHub />
       <Footer />
