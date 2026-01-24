@@ -1,0 +1,40 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Terminal, Github, Disc } from 'lucide-react';
+
+export const Navbar = () => {
+  return (
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="fixed top-0 left-0 right-0 z-50 px-6 py-4 backdrop-blur-md bg-slate-950/70 border-b border-white/5"
+    >
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="p-2 bg-violet-600 rounded-lg">
+            <Terminal className="w-5 h-5 text-white" />
+          </div>
+          <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
+            Lumina
+          </span>
+        </div>
+
+        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+          <a href="#features" className="hover:text-white transition-colors">Features</a>
+          <a href="#games" className="hover:text-white transition-colors">Supported Games</a>
+          <a href="#script" className="hover:text-white transition-colors">Get Script</a>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <a href="#" className="p-2 hover:bg-white/5 rounded-full transition-colors text-slate-400 hover:text-white">
+            <Github className="w-5 h-5" />
+          </a>
+          <a href="#" className="p-2 hover:bg-white/5 rounded-full transition-colors text-slate-400 hover:text-indigo-400">
+            <Disc className="w-5 h-5" /> {/* Discord icon surrogate */}
+          </a>
+        </div>
+      </div>
+    </motion.nav>
+  );
+};
