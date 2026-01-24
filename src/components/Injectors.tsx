@@ -59,7 +59,6 @@ export const Injectors = () => {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
-            'User-Agent': 'WEAO-3PService'
           }
         });
         
@@ -91,7 +90,6 @@ export const Injectors = () => {
           const proxyResponse = await fetch(proxyUrl, {
             headers: {
               'Accept': 'application/json',
-              'User-Agent': 'WEAO-3PService'
             }
           });
           
