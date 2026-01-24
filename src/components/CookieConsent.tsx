@@ -42,8 +42,8 @@ export const CookieConsent = () => {
               <div>
                 <h3 className="text-lg font-bold text-white mb-1">We use cookies</h3>
                 <p className="text-sm text-slate-400 leading-relaxed max-w-xl">
-                  We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. 
-                  By clicking "Accept", you consent to our use of cookies.
+                  我们使用Cookie来增强您的浏览体验、提供个性化内容并分析我们的流量。 
+                  点击“接受”即表示您同意我们使用cookies。
                 </p>
               </div>
             </div>
@@ -53,13 +53,13 @@ export const CookieConsent = () => {
                 onClick={handleDecline}
                 className="flex-1 md:flex-none px-6 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors border border-transparent hover:border-white/5"
               >
-                Decline
+                不接受
               </button>
               <button
                 onClick={handleAccept}
                 className="flex-1 md:flex-none px-8 py-2.5 rounded-xl text-sm font-medium bg-violet-600 hover:bg-violet-500 text-white shadow-lg shadow-violet-600/20 transition-all hover:scale-105"
               >
-                Accept
+                接受
               </button>
             </div>
             
