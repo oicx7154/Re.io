@@ -21,9 +21,9 @@ export const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-          <a href="#features" className="hover:text-white transition-colors">Features</a>
-          <a href="#games" className="hover:text-white transition-colors">Supported Games</a>
-          <a href="#script" className="hover:text-white transition-colors">Get Script</a>
+          <a href="#features" className="hover:text-white transition-colors">特征</a>
+          <a href="#games" className="hover:text-white transition-colors">支持的游戏</a>
+          <a href="#script" className="hover:text-white transition-colors">获取脚本</a>
         </div>
 
         <div className="flex items-center gap-4">
