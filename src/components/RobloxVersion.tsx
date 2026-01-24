@@ -33,7 +33,11 @@ export const RobloxVersion = () => {
     
     for (const endpoint of endpoints) {
       try {
-        const response = await fetch(endpoint);
+        const response = await fetch(endpoint, {
+          headers: {
+            'User-Agent': 'WEAO-3PService'
+          }
+        });
         if (response.ok) {
           const data = await response.json();
           return {
@@ -65,7 +69,11 @@ export const RobloxVersion = () => {
     
     for (const endpoint of endpoints) {
       try {
-        const response = await fetch(endpoint);
+        const response = await fetch(endpoint, {
+          headers: {
+            'User-Agent': 'WEAO-3PService'
+          }
+        });
         if (response.ok) {
           const data = await response.json();
           if (data) {
