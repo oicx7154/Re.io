@@ -31,7 +31,7 @@ export const Injectors = () => {
 
   const getInjectorsData = async () => {
     const endpoints = [
-      'http://farts.fadedis.xyz:25551/api/status/exploits',
+      'http://farts.fadedis.xyz:25551/api/status/exploits',      
       'https://whatexpsare.online/api/status/exploits',
       'https://whatexploitsaretra.sh/api/status/exploits',
       'https://weao.gg/api/status/exploits'
