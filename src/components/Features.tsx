@@ -5,33 +5,33 @@ import { Shield, Zap, Crosshair, Code, Ghost, Cpu } from 'lucide-react';
 const features = [
   {
     icon: Shield,
-    title: "100% Undetected",
-    description: "Advanced bypass methods ensure your account stays safe while you dominate."
+    title: "100% 未检测",
+    description: "先进的绕过方法确保您在主宰游戏时账号依然安全"
   },
   {
     icon: Zap,
-    title: "Lighting Fast",
-    description: "Optimized Lua execution engine providing zero lag and maximum performance."
+    title: "极速如电",
+    description: "优化的 Lua 执行引擎, 零延迟, 性能拉满"
   },
   {
     icon: Crosshair,
-    title: "Universal Aimbot",
-    description: "Highly customizable aimbot with silent aim, smoothing, and prediction."
+    title: "通用自瞄",
+    description: "高度可定制的自瞄, 支持静默瞄准, 平滑与预判"
   },
   {
     icon: Ghost,
-    title: "ESP & Visuals",
-    description: "See players, items, and objectives through walls with fully customizable ESP."
+    title: "ESP 与视觉",
+    description: "透视墙壁查看玩家, 物品与目标, 完全可自定义的 ESP"
   },
   {
     icon: Code,
-    title: "Auto-Update",
-    description: "The script automatically fetches the latest offsets and patches on injection."
+    title: "自动更新",
+    description: "脚本在注入时自动获取最新偏移与补丁"
   },
   {
     icon: Cpu,
-    title: "Key System Free",
-    description: "No annoying key systems or linkvertise. Just copy, execute, and play."
+    title: "密钥系统",
+    description: "简单快捷"
   }
 ];
 
