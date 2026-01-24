@@ -163,20 +163,36 @@ export const Injectors = () => {
 
   const fetchSuncData = async (scrapId: string, suncKey: string) => {
     try {
-      const response = await fetch(`https://sunc.rubis.app/api/scrap/${scrapId}&key=${suncKey}`, {
+      // 修复 URL 格式，使用 ? 作为查询参数分隔符
+      const response = await fetch(`https://sunc.rubis.app/api/scrap/${scrapId}?key=${suncKey}`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
           'User-Agent': 'WEAO-3PService'
-        }
+        },
+        // 允许跨域请求的凭证
+        credentials: 'omit'
       });
       
       if (response.ok) {
         const data = await response.json();
         return data;
+      } else {
+        console.error('获取 SUNC 数据失败，HTTP 状态码:', response.status);
+        console.error('响应头:', response.headers);
+        try {
+          const errorData = await response.text();
+          console.error('错误响应内容:', errorData);
+        } catch (parseError) {
+          console.error('无法解析错误响应:', parseError);
+        }
       }
     } catch (error) {
-      console.error('获取 SUNC 数据失败:', error);
+      console.error('获取 SUNC 数据失败，网络错误:', error);
+      // 检查是否是 CORS 错误
+      if (error instanceof TypeError && error.message.includes('NetworkError')) {
+        console.error('可能的 CORS 问题或网络连接问题');
+      }
     }
     return null;
   };
@@ -309,10 +325,6 @@ export const Injectors = () => {
                   </div>
 
                   <div className="space-y-1.5 mb-5">
-                    <div className="flex items-center gap-2 text-sm text-slate-400">
-                      <div className="w-1 h-1 rounded-full bg-slate-500" />
-                      类型: {platformText}
-                    </div>
                     {extype !== 'wexternal' && (
                       <div className="flex items-center gap-2 text-sm text-slate-400">
                         <div className="w-1 h-1 rounded-full bg-slate-500" />
@@ -458,16 +470,50 @@ export const Injectors = () => {
                   <p className="text-slate-400">加载 SUNC 测试结果中...</p>
                 </div>
               ) : !suncData ? (
-                <div className="text-center py-12 bg-slate-800/50 rounded-lg border border-white/5">
-                  <div className="inline-flex items-center gap-3 px-6 py-3 bg-violet-500/20 text-violet-400 rounded-lg border border-violet-500/30 mb-4">
-                    <span className="text-2xl font-bold">{selectedInjector.suncPercent}%</span>
-                    <span className="text-lg">SUNC</span>
+                <div className="space-y-5">
+                  <div className="text-center py-8 bg-slate-800/50 rounded-lg border border-white/5">
+                    <div className="inline-flex items-center gap-3 px-6 py-3 bg-violet-500/20 text-violet-400 rounded-lg border border-violet-500/30 mb-4">
+                      <span className="text-2xl font-bold">{selectedInjector.suncPercent}%</span>
+                      <span className="text-lg">SUNC</span>
+                    </div>
+                    <div className="inline-flex items-center gap-3 px-6 py-3 bg-green-500/20 text-green-400 rounded-lg border border-green-500/30">
+                      <span className="text-2xl font-bold">{selectedInjector.uncPercent}%</span>
+                      <span className="text-lg">UNC</span>
+                    </div>
+                    <p className="text-slate-400 mt-6">直接 API 请求失败，正在显示备用视图...</p>
                   </div>
-                  <div className="inline-flex items-center gap-3 px-6 py-3 bg-green-500/20 text-green-400 rounded-lg border border-green-500/30">
-                    <span className="text-2xl font-bold">{selectedInjector.uncPercent}%</span>
-                    <span className="text-lg">UNC</span>
-                  </div>
-                  <p className="text-slate-400 mt-6">此注入器没有详细的 SUNC 测试数据</p>
+                  
+                  {/* Iframe Fallback */}
+                  {selectedInjector.suncScrap && selectedInjector.suncKey && (
+                    <div className="bg-slate-800/50 rounded-lg border border-white/5 overflow-hidden">
+                      <div className="px-5 py-3 bg-white/5 border-b border-white/5">
+                        <h5 className="font-medium text-white flex items-center justify-between">
+                          <span>SUNC 测试备用视图</span>
+                          <a 
+                            href={`https://sunc.rubis.app/?scrap=${selectedInjector.suncScrap}&key=${selectedInjector.suncKey}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-sm text-violet-400 hover:text-violet-300 transition-colors"
+                          >
+                            在新窗口打开 <ExternalLink className="w-3 h-3" />
+                          </a>
+                        </h5>
+                      </div>
+                      <div className="h-96 overflow-hidden">
+                        <iframe 
+                          src={`https://sunc.rubis.app/?scrap=${selectedInjector.suncScrap}&key=${selectedInjector.suncKey}`}
+                          frameBorder="0"
+                          allowTransparency="true"
+                          sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+                          loading="lazy"
+                          className="w-full h-full transition-opacity duration-300 opacity-0 hover:opacity-100"
+                          onLoad={(e) => {
+                            e.currentTarget.style.opacity = '1';
+                          }}
+                        ></iframe>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div className="space-y-5">
