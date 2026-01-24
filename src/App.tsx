@@ -13,10 +13,10 @@ function App() {
       <Background />
       <CookieConsent />
       <Navbar />
+      <ScriptSection />
       <Hero />
       <Features />
       <ContentHub />
-      <ScriptSection />
       <Footer />
     </div>
   );
