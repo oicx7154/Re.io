@@ -16,7 +16,7 @@ export const Navbar = () => {
             <Terminal className="w-5 h-5 text-white" />
           </div>
           <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
-            Lumina
+            灵构 丨 RS HUB
           </span>
         </div>
 
@@ -28,10 +28,8 @@ export const Navbar = () => {
 
         <div className="flex items-center gap-4">
           <a href="#" className="p-2 hover:bg-white/5 rounded-full transition-colors text-slate-400 hover:text-white">
-            <Github className="w-5 h-5" />
           </a>
           <a href="#" className="p-2 hover:bg-white/5 rounded-full transition-colors text-slate-400 hover:text-indigo-400">
-            <Disc className="w-5 h-5" /> {/* Discord icon surrogate */}
           </a>
         </div>
       </div>
