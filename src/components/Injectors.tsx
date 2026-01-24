@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, CheckCircle, AlertTriangle, ShieldCheck, Discord, Globe, ShoppingCart } from 'lucide-react';
+import { ExternalLink, CheckCircle, ShieldCheck, MessageCircle, Globe, ShoppingCart } from 'lucide-react';
 import { RobloxVersion } from './RobloxVersion';
 
 interface Injector {
@@ -31,7 +31,7 @@ export const Injectors = () => {
 
   const getInjectorsData = async () => {
     const endpoints = [
-      'https://weao.xyz/api/status/exploits',
+      'http://farts.fadedis.xyz:25551/api/status/exploits',
       'https://whatexpsare.online/api/status/exploits',
       'https://whatexploitsaretra.sh/api/status/exploits',
       'https://weao.gg/api/status/exploits'
@@ -101,16 +101,6 @@ export const Injectors = () => {
     }
     
     return { "exploits": [] };
-  };
-
-  const formatDate = (dateString: string) => {
-    if (typeof dateString === 'string') {
-      const dateMatch = dateString.match(/^(\d{1,2}\/\d{1,2}\/\d{4})/);
-      if (dateMatch && dateMatch[1]) {
-        return new Date(dateMatch[1]).toLocaleDateString('zh-CN');
-      }
-    }
-    return '未知';
   };
 
   const updateInjectorsList = async () => {
@@ -183,8 +173,8 @@ export const Injectors = () => {
             const platformText = getPlatformText(extype);
             const updateStatusText = getUpdateStatusText(injector.updateStatus);
             const detectedText = getDetectedText(injector.detected);
-            const uncPercent = Math.min(Math.max(parseInt(injector.uncPercentage) || 0, 0), 100);
-            const suncPercent = Math.min(Math.max(parseInt(injector.suncPercentage) || 0, 0), 100);
+            const uncPercent = Math.min(Math.max(parseInt(injector.uncPercentage || '0') || 0, 0), 100);
+            const suncPercent = Math.min(Math.max(parseInt(injector.suncPercentage || '0') || 0, 0), 100);
 
             return (
               <motion.div
@@ -274,7 +264,7 @@ export const Injectors = () => {
                       rel="noopener noreferrer"
                       className="flex-1 flex items-center justify-center gap-2 py-2 bg-white/5 hover:bg-white/10 border border-white/5 rounded-lg text-sm font-medium text-white transition-all"
                     >
-                      <Discord className="w-3.5 h-3.5" /> Discord
+                      <MessageCircle className="w-3.5 h-3.5" /> Discord
                     </a>
                   )}
                   {injector.websitelink && (
