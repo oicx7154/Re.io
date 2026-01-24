@@ -15,12 +15,12 @@ export const ContentHub = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {activeTab === 'games' ? 'Supported Games' : 'Recommended Injectors'}
+              {activeTab === 'games' ? '支持的游戏' : '注入器'}
             </h2>
             <p className="text-slate-400 max-w-xl">
               {activeTab === 'games' 
-                ? "We constantly update our script hub with new games to ensure you have the best experience."
-                : "Top-tier executors verified by our team to work perfectly with Lumina Script."}
+                ? "我们不断更新新游戏的脚本中心, 以确保您拥有最佳体验."
+                : "脚本支持众多注入器"}
             </p>
           </div>
 
