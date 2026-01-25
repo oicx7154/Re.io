@@ -62,6 +62,7 @@ export const RobloxVersion = () => {
       });
       if (response.ok) {
         const data = await response.json();
+        console.log('Past version API response:', data); // 添加调试日志
         if (data) {
           return {
             Windows: data.Windows || '未知版本',
@@ -70,6 +71,8 @@ export const RobloxVersion = () => {
             MacDate: data.MacDate || '未知日期'
           };
         }
+      } else {
+        console.error('Past version API error:', response.status, await response.text());
       }
     } catch (error) {
       console.error('Failed to fetch past Roblox version:', error);
@@ -151,21 +154,32 @@ export const RobloxVersion = () => {
           </div>
           
           <div className="relative z-10">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center justify-between mb-2">
               <span className="px-2 py-0.5 rounded text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/20">
                 WINDOWS
               </span>
-              <span className="text-xs text-slate-400">{loading ? '加载中...' : formatDate(currentVersion.windowsDate)}</span>
+              <div className="flex gap-2">
+                <span className="text-xs text-slate-400">当前: {loading ? '加载中...' : formatDate(currentVersion.windowsDate)}</span>
+                {pastVersion && pastVersion.Windows && (
+                  <span className="text-xs text-slate-400">旧版: {formatDate(pastVersion.WindowsDate)}</span>
+                )}
+              </div>
             </div>
             
-            <div className="font-mono text-lg text-white mb-4 break-all">
+            <div className="font-mono text-lg text-white mb-2 break-all">
               {loading ? (
                 <div className="h-7 w-32 bg-white/10 rounded animate-pulse" />
               ) : (
                 currentVersion.windows
               )}
             </div>
-
+            
+            {pastVersion && pastVersion.Windows && (
+              <div className="font-mono text-sm text-slate-400 mb-4 break-all">
+                旧版本: {pastVersion.Windows}
+              </div>
+            )}
+            
             <div className="flex gap-2">
               <button 
                 onClick={() => {
@@ -181,12 +195,16 @@ export const RobloxVersion = () => {
               </button>
               <button 
                 onClick={() => {
+                  console.log('旧版本下载按钮点击:', { pastVersion, currentVersion });
                   let url = null;
                   if (pastVersion && pastVersion.Windows) {
+                    console.log('使用pastVersion.Windows:', pastVersion.Windows);
                     url = `https://rdd.weao.gg/?channel=LIVE&binaryType=WindowsPlayer&version=${pastVersion.Windows}`;
                   } else if (currentVersion.windows !== '未知版本') {
+                    console.log('使用currentVersion.windows:', currentVersion.windows);
                     url = `https://rdd.weao.gg/?channel=LIVE&binaryType=WindowsPlayer&version=${currentVersion.windows}`;
                   }
+                  console.log('生成的下载URL:', url);
                   if (url) {
                     openDownloadLink(url);
                   }
@@ -207,21 +225,32 @@ export const RobloxVersion = () => {
           </div>
 
           <div className="relative z-10">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center justify-between mb-2">
               <span className="px-2 py-0.5 rounded text-xs font-bold bg-blue-500/20 text-blue-400 border border-blue-500/20">
                 MAC
               </span>
-              <span className="text-xs text-slate-400">{loading ? '加载中...' : formatDate(currentVersion.macDate)}</span>
+              <div className="flex gap-2">
+                <span className="text-xs text-slate-400">当前: {loading ? '加载中...' : formatDate(currentVersion.macDate)}</span>
+                {pastVersion && pastVersion.Mac && (
+                  <span className="text-xs text-slate-400">旧版: {formatDate(pastVersion.MacDate)}</span>
+                )}
+              </div>
             </div>
             
-            <div className="font-mono text-lg text-white mb-4 break-all">
+            <div className="font-mono text-lg text-white mb-2 break-all">
               {loading ? (
                 <div className="h-7 w-32 bg-white/10 rounded animate-pulse" />
               ) : (
                 currentVersion.mac
               )}
             </div>
-
+            
+            {pastVersion && pastVersion.Mac && (
+              <div className="font-mono text-sm text-slate-400 mb-4 break-all">
+                旧版本: {pastVersion.Mac}
+              </div>
+            )}
+            
             <div className="flex gap-2">
               <button 
                 onClick={() => {
@@ -237,12 +266,16 @@ export const RobloxVersion = () => {
               </button>
               <button 
                 onClick={() => {
+                  console.log('Mac旧版本下载按钮点击:', { pastVersion, currentVersion });
                   let url = null;
                   if (pastVersion && pastVersion.Mac) {
+                    console.log('使用pastVersion.Mac:', pastVersion.Mac);
                     url = `https://rdd.weao.gg/?channel=LIVE&binaryType=MacPlayer&version=${pastVersion.Mac}`;
                   } else if (currentVersion.mac !== '未知版本') {
+                    console.log('使用currentVersion.mac:', currentVersion.mac);
                     url = `https://rdd.weao.gg/?channel=LIVE&binaryType=MacPlayer&version=${currentVersion.mac}`;
                   }
+                  console.log('生成的Mac下载URL:', url);
                   if (url) {
                     openDownloadLink(url);
                   }
