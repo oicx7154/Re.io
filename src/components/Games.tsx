@@ -4,44 +4,54 @@ import { Gamepad2, Users } from 'lucide-react';
 
 const games = [
   {
-    title: "Blox Fruits",
-    users: "50k+",
-    image: "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?auto=format&fit=crop&q=80&w=600",
-    icon: "https://images.unsplash.com/photo-1533577116850-9cc66dad8fe4?auto=format&fit=crop&q=80&w=100", // Skull/Pirate placeholder
+    title: "樱花摊位",
+    users: "1k+",
+    image: "GameJpg/SS.jpg",
+    icon: "GameJpg/SS.jpg",
     color: "text-cyan-400",
     dot: "bg-cyan-400",
     border: "group-hover:border-cyan-500/50",
-    features: ["Auto Farm Level", "Fruit Sniper", "Raid Aura", "ESP Players"]
+    features: ["透视诅咒", "秒杀", "等功能"]
   },
   {
-    title: "Pet Simulator 99",
-    users: "32k+",
-    image: "https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?auto=format&fit=crop&q=80&w=600",
-    icon: "https://images.unsplash.com/photo-1560167016-022b78a0258e?auto=format&fit=crop&q=80&w=100", // Cute animal/pet placeholder
+    title: "黑暗欺骗",
+    users: "1k+",
+    image: "GameJpg/黑暗欺骗.jpg",
+    icon: "GameJpg/黑暗欺骗.jpg",
     color: "text-pink-400",
     dot: "bg-pink-400",
     border: "group-hover:border-pink-500/50",
-    features: ["Auto Hatch", "Gem Farm", "Item Sniper", "Relic Finder"]
+    features: ["自动捡等"]
   },
   {
-    title: "Bedwars",
-    users: "15k+",
-    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=600",
-    icon: "https://images.unsplash.com/photo-1631603090989-93f9ef6f9d63?auto=format&fit=crop&q=80&w=100", // Sword/Battle placeholder
+    title: "Hunter",
+    users: "200+",
+    image: "GameJpg/Hunter.jpg",
+    icon: "GameJpg/Hunter.jpg",
     color: "text-emerald-400",
     dot: "bg-emerald-400",
     border: "group-hover:border-emerald-500/50",
-    features: ["Kill Aura", "Fly / Speed", "Auto Bridge", "Nuker"]
+    features: ["杀戮光环", "自动农场", "安全点等",]
   },
   {
-    title: "Da Hood",
-    users: "28k+",
-    image: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&q=80&w=600",
-    icon: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&q=80&w=100", // Hood/Mask placeholder
+    title: "Forsaken",
+    users: "20k+",
+    image: "GameJpg/Forsaken.jpg",
+    icon: "GameJpg/ForSaken.jpg",
     color: "text-orange-400",
     dot: "bg-orange-400",
     border: "group-hover:border-orange-500/50",
-    features: ["Silent Aim", "God Mode", "Cash Farm", "Teleports"]
+    features: ["自动修电机", "透视杀手", "无限体力等",]
+  },
+  {
+    title: "天堂站立",
+    user: "500+",
+    image: "GameJpg/HS.jpg",
+    icon: "GameJpg/HS.jpg",
+    color: "text-yellow-400",
+    dot: "bg-yellow-400",
+    border: "group-hover:border-yellow-500/50",
+    features: ["自动捡箱子等"]
   }
 ];
 
@@ -99,6 +109,13 @@ export const Games = () => {
         </motion.div>
       ))}
       
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.4 }}
+        className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/5 border-dashed flex flex-col items-center justify-center p-6 text-center hover:bg-white/10 transition-colors cursor-pointer"
+      >
+      </motion.div>
     </div>
   );
 };
