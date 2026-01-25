@@ -17,6 +17,13 @@ export const ScriptSection = () => {
       {/* Background accents */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[400px] bg-violet-600/10 blur-[100px] rounded-full pointer-events-none" />
 
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-3xl mx-auto text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4"></h2>
+          <p className="text-slate-400">
+          </p>
+        </div>
+
         <motion.div 
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
