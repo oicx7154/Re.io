@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Download, RefreshCw, Monitor, Apple, AlertCircle } from 'lucide-react';
 
+interface PastVersionInfo {
+  Windows: string;
+  WindowsDate: string;
+  Mac: string;
+  MacDate: string;
+}
+
 interface VersionInfo {
   windows: string;
   windowsDate: string;
   mac: string;
   macDate: string;
-}
-
-interface PastVersionInfo {
-  Windows: string;
-  Mac: string;
 }
 
 export const RobloxVersion = () => {
@@ -28,7 +30,6 @@ export const RobloxVersion = () => {
     
     try {
       const response = await fetch(endpoint, {
-        // 删除User-Agent头
         headers: {}
       });
       if (response.ok) {
@@ -53,25 +54,25 @@ export const RobloxVersion = () => {
   };
 
   const getRobloxPastVersion = async () => {
-    const endpoints = [
-      'http://farts.fadedis.xyz:25551/api/versions/past',
-    ];
+    const endpoint = "http://farts.fadedis.xyz:25551/api/versions/past";
     
-    for (const endpoint of endpoints) {
-      try {
-        const response = await fetch(endpoint, {
-        });
-        if (response.ok) {
-          const data = await response.json();
-          if (data) {
-            if (Array.isArray(data) && data.length > 0) {
-              return data[0];
-            }
-            return data;
-          }
+    try {
+      const response = await fetch(endpoint, {
+        headers: {}
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data) {
+          return {
+            Windows: data.Windows || '未知版本',
+            WindowsDate: data.WindowsDate || '未知日期',
+            Mac: data.Mac || '未知版本',
+            MacDate: data.MacDate || '未知日期'
+          };
         }
-      } catch (error) {
       }
+    } catch (error) {
+      console.error('Failed to fetch past Roblox version:', error);
     }
     
     return null;
