@@ -13,13 +13,12 @@ export const ScriptSection = () => {
   };
 
   return (
-    <section id="script" className="py-24 relative overflow-hidden">
+    <section id="script" className="py-12 relative overflow-hidden">
       {/* Background accents */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[400px] bg-violet-600/10 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4"></h2>
           <p className="text-slate-400">
           </p>
         </div>
@@ -47,27 +46,40 @@ export const ScriptSection = () => {
                 {copied ? (
                   <>
                     <Check className="w-3.5 h-3.5 text-green-400" />
-                    <span className="text-green-400">Copied!</span>
+                    <span className="text-green-400">已复制!</span>
                   </>
                 ) : (
                   <>
                     <Copy className="w-3.5 h-3.5" />
-                    <span>Copy Code</span>
+                    <span>复制脚本</span>
                   </>
                 )}
               </button>
             </div>
             
-            <div className="p-6 overflow-x-auto">
-              <pre className="font-mono text-sm text-slate-300">
+            <div className="p-6 overflow-x-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
+              <pre className="font-mono text-sm text-slate-300 whitespace-nowrap">
                 <code>
-                  <span className="text-violet-400">loadstring</span>
-                  <span className="text-slate-400">(</span>
-                  <span className="text-cyan-400">utf8.char</span>
-                  <span className="text-slate-400">((</span>
-                  <span className="text-yellow-400">function()</span>
-                  <span className="text-slate-400">return table.unpack({"108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,68,67,76,90,72,49,47,77,97,105,110,47,114,101,102,115,47,104,101,97,100,115,47,109,97,105,110,47,75,101,121,83,121,115,116,101,109,46,108,117,97,34,41,41,40,41"}</span>
-                  <span className="text-slate-400">) end)()))()</span>
+                  <span className="text-blue-400">loadstring</span>
+                  <span className="text-slate-500">(</span>
+                  <span className="text-blue-400">utf8</span>
+                  <span className="text-slate-500">.</span>
+                  <span className="text-blue-400">char</span>
+                  <span className="text-slate-500">((</span>
+                  <span className="text-purple-400">function</span>
+                  <span className="text-slate-500">()</span>
+                  <span className="text-slate-300"> </span>
+                  <span className="text-purple-400">return</span>
+                  <span className="text-slate-300"> </span>
+                  <span className="text-blue-400">table</span>
+                  <span className="text-slate-500">.</span>
+                  <span className="text-blue-400">unpack</span>
+                  <span className="text-slate-500">({'{'}</span>
+                  <span className="text-emerald-400"> 108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,68,67,76,90,72,49,47,77,97,105,110,47,114,101,102,115,47,104,101,97,100,115,47,109,97,105,110,47,75,101,121,83,121,115,116,101,109,46,108,117,97,34,41,41,40,41 </span>
+                  <span className="text-slate-500">{'}'})</span>
+                  <span className="text-slate-300"> </span>
+                  <span className="text-purple-400">end</span>
+                  <span className="text-slate-500">)()))()</span>
                 </code>
               </pre>
             </div>
