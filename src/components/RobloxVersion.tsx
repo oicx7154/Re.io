@@ -25,8 +25,7 @@ export const RobloxVersion = () => {
 
   const getRobloxVersion = async () => {
     const endpoints = [
-      'http://farts.fadedis.xyz:25551/api/versions/current',
-
+      "https://inject.today/api/versions/current"
     ];
     
     for (const endpoint of endpoints) {
@@ -39,10 +38,10 @@ export const RobloxVersion = () => {
         if (response.ok) {
           const data = await response.json();
           return {
-            windows: data.Windows || '未知版本',
-            windowsDate: data.WindowsDate || '未知日期',
-            mac: data.Mac || '未知版本',
-            macDate: data.MacDate || '未知日期'
+            windows: data.Windows.Version || '未知版本',
+            windowsDate: data.Windows.Date || '未知日期',
+            mac: data.Macintosh.Version || '未知版本',
+            macDate: data.Macintosh.Date || '未知日期'
           };
         }
       } catch (error) {
