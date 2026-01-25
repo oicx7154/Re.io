@@ -35,7 +35,7 @@ export const ContentHub = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {activeTab === 'games' ? 'Supported Games' : activeTab === 'injectors' ? 'Recommended Injectors' : 'Get the Script'}
+              {activeTab === 'games' ? '支持游戏' : activeTab === 'injectors' ? '获取注入器' : '获取脚本'}
             </h2>
             <p className="text-slate-400 max-w-xl">
               {activeTab === 'games' 
@@ -61,7 +61,7 @@ export const ContentHub = () => {
                 />
               )}
               <span className="relative z-10 flex items-center gap-2">
-                <Gamepad2 className="w-4 h-4" /> Games
+                <Gamepad2 className="w-4 h-4" /> 游戏
               </span>
             </button>
             <button
@@ -78,7 +78,7 @@ export const ContentHub = () => {
                 />
               )}
               <span className="relative z-10 flex items-center gap-2">
-                <Syringe className="w-4 h-4" /> Injectors
+                <Syringe className="w-4 h-4" /> 注入器
               </span>
             </button>
             <button
