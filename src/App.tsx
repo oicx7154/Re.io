@@ -2,7 +2,6 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Features } from './components/Features';
 import { ContentHub } from './components/ContentHub';
-import { ScriptSection } from './components/ScriptSection';
 import { Footer } from './components/Footer';
 import { Background } from './components/Background';
 import { CookieConsent } from './components/CookieConsent';
@@ -14,7 +13,6 @@ function App() {
       <CookieConsent />
       <Navbar />
       <Hero />
-      <ScriptSection />
       <Features />
       <ContentHub />
       <Footer />
