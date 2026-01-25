@@ -105,11 +105,7 @@ export const Games = () => {
         transition={{ duration: 0.3, delay: 0.4 }}
         className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/5 border-dashed flex flex-col items-center justify-center p-6 text-center hover:bg-white/10 transition-colors cursor-pointer"
       >
-        <div className="p-4 rounded-full bg-white/5 mb-4 group-hover:scale-110 transition-transform">
-          <Gamepad2 className="w-8 h-8 text-slate-400" />
-        </div>
-        <h3 className="text-lg font-bold text-white mb-1">More Games</h3>
-        <p className="text-sm text-slate-400">Check our Discord for full list</p>
+
       </motion.div>
     </div>
   );
