@@ -62,7 +62,6 @@ export const RobloxVersion = () => {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log('Past version API response:', data); // 添加调试日志
         if (data) {
           return {
             Windows: data.Windows || '未知版本',
@@ -72,10 +71,8 @@ export const RobloxVersion = () => {
           };
         }
       } else {
-        console.error('Past version API error:', response.status, await response.text());
       }
     } catch (error) {
-      console.error('Failed to fetch past Roblox version:', error);
     }
     
     return null;
@@ -204,7 +201,6 @@ export const RobloxVersion = () => {
                     console.log('使用currentVersion.windows:', currentVersion.windows);
                     url = `https://rdd.weao.gg/?channel=LIVE&binaryType=WindowsPlayer&version=${currentVersion.windows}`;
                   }
-                  console.log('生成的下载URL:', url);
                   if (url) {
                     openDownloadLink(url);
                   }
@@ -266,16 +262,12 @@ export const RobloxVersion = () => {
               </button>
               <button 
                 onClick={() => {
-                  console.log('Mac旧版本下载按钮点击:', { pastVersion, currentVersion });
                   let url = null;
                   if (pastVersion && pastVersion.Mac) {
-                    console.log('使用pastVersion.Mac:', pastVersion.Mac);
                     url = `https://rdd.weao.gg/?channel=LIVE&binaryType=MacPlayer&version=${pastVersion.Mac}`;
                   } else if (currentVersion.mac !== '未知版本') {
-                    console.log('使用currentVersion.mac:', currentVersion.mac);
                     url = `https://rdd.weao.gg/?channel=LIVE&binaryType=MacPlayer&version=${currentVersion.mac}`;
                   }
-                  console.log('生成的Mac下载URL:', url);
                   if (url) {
                     openDownloadLink(url);
                   }
