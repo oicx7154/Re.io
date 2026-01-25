@@ -24,28 +24,24 @@ export const RobloxVersion = () => {
   const [pastVersion, setPastVersion] = useState<PastVersionInfo | null>(null);
 
   const getRobloxVersion = async () => {
-    const endpoints = [
-      "https://inject.today/api/versions/current"
-    ];
+    const endpoint = "https://inject.today/api/versions/current";
     
-    for (const endpoint of endpoints) {
-      try {
-        const response = await fetch(endpoint, {
-          headers: {
-            'User-Agent': 'WEAO-3PService'
-          }
-        });
-        if (response.ok) {
-          const data = await response.json();
-          return {
-            windows: data.Windows.Version || '未知版本',
-            windowsDate: data.Windows.Date || '未知日期',
-            mac: data.Macintosh.Version || '未知版本',
-            macDate: data.Macintosh.Date || '未知日期'
-          };
-        }
-      } catch (error) {
+    try {
+      const response = await fetch(endpoint, {
+        // 删除User-Agent头
+        headers: {}
+      });
+      if (response.ok) {
+        const data = await response.json();
+        return {
+          windows: data.Windows.Version || '未知版本',
+          windowsDate: data.Windows.Date || '未知日期',
+          mac: data.Macintosh.Version || '未知版本',
+          macDate: data.Macintosh.Date || '未知日期'
+        };
       }
+    } catch (error) {
+      console.error('Failed to fetch Roblox version:', error);
     }
     
     return {
@@ -64,9 +60,6 @@ export const RobloxVersion = () => {
     for (const endpoint of endpoints) {
       try {
         const response = await fetch(endpoint, {
-          headers: {
-            'User-Agent': 'WEAO-3PService'
-          }
         });
         if (response.ok) {
           const data = await response.json();
@@ -88,13 +81,23 @@ export const RobloxVersion = () => {
     if (!dateString || dateString === '未知日期') {
       return '未知日期';
     }
-    const datePart = dateString.split(',')[0];
     
     try {
-      const date = new Date(datePart);
-      return date.toLocaleDateString('zh-CN');
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) {
+        return dateString;
+      }
+      return date.toLocaleString('zh-CN', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        timeZone: 'Asia/Shanghai'
+      });
     } catch (error) {
-      return datePart;
+      return dateString;
     }
   };
 
