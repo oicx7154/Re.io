@@ -99,14 +99,6 @@ export const Games = () => {
         </motion.div>
       ))}
       
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.4 }}
-        className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/5 border-dashed flex flex-col items-center justify-center p-6 text-center hover:bg-white/10 transition-colors cursor-pointer"
-      >
-
-      </motion.div>
     </div>
   );
 };
