@@ -26,9 +26,7 @@ export const RobloxVersion = () => {
   const getRobloxVersion = async () => {
     const endpoints = [
       'http://farts.fadedis.xyz:25551/api/versions/current',
-      'https://whatexpsare.online/api/versions/current',
-      'https://whatexploitsaretra.sh/api/versions/current',
-      'https://weao.gg/api/versions/current'
+
     ];
     
     for (const endpoint of endpoints) {
@@ -62,9 +60,6 @@ export const RobloxVersion = () => {
   const getRobloxPastVersion = async () => {
     const endpoints = [
       'http://farts.fadedis.xyz:25551/api/versions/past',
-      'https://whatexpsare.online/api/versions/past',
-      'https://whatexploitsaretra.sh/api/versions/past',
-      'https://weao.gg/api/versions/past'
     ];
     
     for (const endpoint of endpoints) {
@@ -132,9 +127,9 @@ export const RobloxVersion = () => {
         <div>
           <h3 className="text-xl font-bold text-white flex items-center gap-2">
             <Monitor className="w-5 h-5 text-violet-400" />
-            Roblox Client Version
+            Roblox版本
           </h3>
-          <p className="text-sm text-slate-400">Check current client hash for compatibility.</p>
+          <p className="text-sm text-slate-400">检查Roblox版本</p>
         </div>
         <button 
           onClick={fetchVersion}
