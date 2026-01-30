@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Gamepad2, Users } from 'lucide-react';
+import { Gamepad2 } from 'lucide-react';
 
 // Import images directly
 import SSImage from './GameJpg/SS.jpg';
@@ -12,7 +12,6 @@ import HSImage from './GameJpg/HS.jpg';
 const games = [
   {
     title: "樱花摊位",
-    users: "1k+",
     image: SSImage,
     icon: SSImage,
     color: "text-cyan-400",
@@ -22,7 +21,6 @@ const games = [
   },
   {
     title: "黑暗欺骗",
-    users: "1k+",
     image: DarkDeceptionImage,
     icon: DarkDeceptionImage,
     color: "text-pink-400",
@@ -32,7 +30,6 @@ const games = [
   },
   {
     title: "Hunter",
-    users: "200+",
     image: HunterImage,
     icon: HunterImage,
     color: "text-emerald-400",
@@ -42,7 +39,6 @@ const games = [
   },
   {
     title: "Forsaken",
-    users: "20k+",
     image: ForsakenImage,
     icon: ForsakenImage,
     color: "text-orange-400",
@@ -52,7 +48,6 @@ const games = [
   },
   {
     title: "天堂站立",
-    user: "500+",
     image: HSImage,
     icon: HSImage,
     color: "text-yellow-400",
@@ -89,10 +84,6 @@ export const Games = () => {
                   className="relative w-12 h-12 rounded-xl border border-white/10 shadow-lg object-cover"
                 />
               </div>
-              <span className="flex items-center gap-1.5 px-2.5 py-1 bg-black/50 backdrop-blur-md border border-white/5 rounded-full text-xs font-medium text-white">
-                <Users className="w-3 h-3" />
-                {game.users}
-              </span>
             </div>
             
             <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-white/90">{game.title}</h3>
