@@ -14,13 +14,11 @@ export const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="p-2 bg-violet-600 rounded-lg">
             <img 
               src={SSImage}
               alt="Logo" 
               className="w-8 h-8 rounded-lg" 
             />
-          </div>
           <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
             灵构 丨 RS HUB
           </span>
