@@ -17,7 +17,7 @@ export const Navbar = () => {
             <img 
               src={SSImage}
               alt="Logo" 
-              className="w-16 h-16 object-contain"
+              className="w-16 h-16 object-cover rounded-md"
             />
           <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
             灵构 丨 RS HUB
